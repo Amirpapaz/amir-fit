@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import SectionWrapper from './SectionWrapper'
 import { SCHEMES, WORKOUTS } from '../utils/swoldier'
 import Button from './Button'
+import generateWorkout from '../utils/functions'
 
 function Header(props) {
     const { index, title, description } = props
@@ -16,11 +17,9 @@ function Header(props) {
     )
 }
 
-export default function Generator() {
+export default function Generator(props) {
     const [showModal, setShowModal] = useState(false)
-    const [muscles, setMuscles] = useState([]);
-    const [poison, setPoison] = useState('individual')
-    const [goal,setGoal] = useState('strenght_power')
+    const {muscles, setMuscles, poison, setPoison,goal,setGoal, updateWorkout } = props
 
     function toggleModal() {
         setShowModal(!showModal)
@@ -96,7 +95,7 @@ export default function Generator() {
                     )
                 })}
             </div>
-            <Button  text={"Formulate"}></Button>
+            <Button func={generateWorkout} text={"Formulate"}></Button>
         </SectionWrapper>
 
     )
