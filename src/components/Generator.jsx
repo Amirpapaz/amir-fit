@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import SectionWrapper from './SectionWrapper'
 import { SCHEMES, WORKOUTS } from '../utils/swoldier'
 import Button from './Button'
-import generateWorkout from '../utils/functions'
 
 function Header(props) {
     const { index, title, description } = props
@@ -18,11 +17,13 @@ function Header(props) {
 }
 
 export default function Generator(props) {
+    const { muscles, setMuscles, poison, setPoison, goal, setGoal, updateWorkout } = props
     const [showModal, setShowModal] = useState(false)
-    const {muscles, setMuscles, poison, setPoison,goal,setGoal, updateWorkout } = props
+
+    // let showModal = false
 
     function toggleModal() {
-        setShowModal(!showModal)
+        setShowModal((!showModal))
     }
 
     function updateMuscles(muscleGroup) {
@@ -49,7 +50,7 @@ export default function Generator(props) {
     }
 
     return (
-        <SectionWrapper header={"generate your workout"} title={['It\'s', 'Huge', 'o\'clock']}>
+        <SectionWrapper id={'generate'} header={"generate your workout"} title={['It\'s', 'Huge', 'o\'clock']}>
             <Header index={'01'} title={'Pick your poison'} description={"Select the workout you wish to endure."} />
             <div className='grid grid-cols-2 sm:grid-cols-4 gap-4'>
                 {Object.keys(WORKOUTS).map((type, typeIndex) => {
@@ -95,7 +96,7 @@ export default function Generator(props) {
                     )
                 })}
             </div>
-            <Button func={generateWorkout} text={"Formulate"}></Button>
+            <Button func={updateWorkout} text={"Formulate"}></Button>
         </SectionWrapper>
 
     )
